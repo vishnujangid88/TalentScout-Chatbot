@@ -60,7 +60,7 @@ The TalentScout Hiring Assistant is an intelligent chatbot designed to automate 
 - **Python 3.9+**: Programming language
 - **Streamlit 1.28+**: Web framework for UI
 - **OpenAI API**: LLM provider (gpt-3.5-turbo)
-- **Groq API**: Free alternative LLM provider (llama3-70b-8192)
+- **Groq API**: Free alternative LLM provider (llama-3.1-8b-instant by default)
 - **LangChain**: Optional framework for LLM orchestration
 
 ### Key Libraries
@@ -83,8 +83,8 @@ The TalentScout Hiring Assistant is an intelligent chatbot designed to automate 
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd hiring-assistant-chatbot
+   git clone https://github.com/vishnujangid88/TalentScout-Chatbot.git
+   cd TalentScout-Chatbot
    ```
 
 2. **Create a virtual environment**
@@ -116,9 +116,13 @@ The TalentScout Hiring Assistant is an intelligent chatbot designed to automate 
    
    Edit `.env` and add your API key:
    ```env
+   # Prefer Groq for the free tier
+   GROQ_API_KEY=your-groq-key-here
+   MODEL_NAME=llama-3.1-8b-instant
+   LLM_PROVIDER=groq
+
+   # Optional OpenAI fallback
    OPENAI_API_KEY=sk-your-key-here
-   MODEL_NAME=gpt-3.5-turbo
-   LLM_PROVIDER=openai
    ```
 
 5. **Run the application**
@@ -149,23 +153,21 @@ The TalentScout Hiring Assistant is an intelligent chatbot designed to automate 
 3. Navigate to API Keys section
 4. Create a new API key
 5. Free tier: 14,400 requests per day
-6. Use model: `llama3-70b-8192` or `mixtral-8x7b-32768`
+6. Recommended models: `llama-3.1-8b-instant` (default) or `mixtral-8x7b-32768`
 
 ### Environment Variables
 
 Create a `.env` file in the root directory:
 
 ```env
-# OpenAI Configuration
-OPENAI_API_KEY=sk-your-key-here
-MODEL_NAME=gpt-3.5-turbo
-
-# Groq Configuration (Alternative)
+# Groq Configuration (default)
 GROQ_API_KEY=your-groq-key-here
-# MODEL_NAME=llama3-70b-8192
+MODEL_NAME=llama-3.1-8b-instant
+LLM_PROVIDER=groq
 
-# LLM Provider: "openai" or "groq"
-LLM_PROVIDER=openai
+# Optional OpenAI fallback
+OPENAI_API_KEY=sk-your-key-here
+# MODEL_NAME=gpt-3.5-turbo
 
 # App Configuration
 APP_TITLE=TalentScout Hiring Assistant
@@ -179,13 +181,18 @@ MIN_QUESTIONS=3
 For Streamlit Cloud deployment, create `.streamlit/secrets.toml`:
 
 ```toml
-OPENAI_API_KEY = "sk-your-key-here"
-MODEL_NAME = "gpt-3.5-turbo"
-LLM_PROVIDER = "openai"
+# Preferred Groq setup
+GROQ_API_KEY = "your-groq-key-here"
+MODEL_NAME = "llama-3.1-8b-instant"
+LLM_PROVIDER = "groq"
 APP_TITLE = "TalentScout Hiring Assistant"
 COMPANY_NAME = "TalentScout"
 MAX_QUESTIONS = 5
 MIN_QUESTIONS = 3
+
+# Optional OpenAI fallback
+# OPENAI_API_KEY = "sk-your-key-here"
+# MODEL_NAME = "gpt-3.5-turbo"
 ```
 
 ## 📖 Usage Guide
@@ -354,50 +361,14 @@ RESPONSE FORMAT:
    - Click "Advanced settings"
    - Add secrets:
      ```
-     OPENAI_API_KEY = "sk-..."
-     MODEL_NAME = "gpt-3.5-turbo"
-     LLM_PROVIDER = "openai"
+     GROQ_API_KEY = "your-groq-key-here"
+     MODEL_NAME = "llama-3.1-8b-instant"
+     LLM_PROVIDER = "groq"
      ```
    - Click "Deploy"
 
 3. **Access your app**
    - URL: `https://your-app-name.streamlit.app`
-
-### Deploy to Hugging Face Spaces
-
-1. **Create a Hugging Face account**
-   - Go to [huggingface.co](https://huggingface.co)
-   - Sign up for a free account
-
-2. **Create a new Space**
-   - Click "New Space"
-   - Choose "Streamlit" SDK
-   - Name your space (e.g., `talentscout-hiring-assistant`)
-
-3. **Clone and setup**
-   ```bash
-   git clone https://huggingface.co/spaces/USERNAME/SPACE_NAME
-   cd SPACE_NAME
-   # Copy all project files here
-   ```
-
-4. **Add secrets**
-   - Go to Space settings
-   - Navigate to "Variables and secrets"
-   - Add:
-     - `OPENAI_API_KEY`
-     - `MODEL_NAME`
-     - `LLM_PROVIDER`
-
-5. **Push to Hugging Face**
-   ```bash
-   git add .
-   git commit -m "Deploy to Hugging Face"
-   git push
-   ```
-
-6. **Access your app**
-   - URL: `https://huggingface.co/spaces/USERNAME/SPACE_NAME`
 
 ## 🎯 Challenges & Solutions
 
@@ -491,10 +462,7 @@ RESPONSE FORMAT:
 ## 🌐 Live Demo
 
 ### Streamlit Cloud
-🔗 [Live Demo on Streamlit Cloud](https://your-app-name.streamlit.app)
-
-### Hugging Face Spaces
-🔗 [Live Demo on Hugging Face](https://huggingface.co/spaces/USERNAME/SPACE_NAME)
+🔗 [TalentScout Hiring Assistant on Streamlit Cloud](https://talentscout-chat.streamlit.app/)
 
 ## 📝 License
 
@@ -510,8 +478,7 @@ For questions or support, please open an issue on GitHub.
 
 ---
 
-**Built with ❤️ for TalentScout Recruitment Agency**
+**Built with ❤️ by Vishnu Jangid**
 
-*Last updated: 2024*
 
 

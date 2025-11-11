@@ -9,9 +9,11 @@ Get up and running with the TalentScout Hiring Assistant in 5 minutes!
 
 ## Installation Steps
 
-### 1. Install Dependencies
+### 1. Clone the Project
 
 ```bash
+git clone https://github.com/vishnujangid88/TalentScout-Chatbot.git
+cd TalentScout-Chatbot
 pip install -r requirements.txt
 ```
 
@@ -30,19 +32,23 @@ pip install -r requirements.txt
 
 2. Edit `.env` and add your API key:
    ```env
-   OPENAI_API_KEY=sk-your-key-here
-   # OR
+   # Prefer Groq (free tier)
    GROQ_API_KEY=your-groq-key-here
    LLM_PROVIDER=groq
+   MODEL_NAME=llama-3.1-8b-instant
+
+   # Optional OpenAI fallback
+   OPENAI_API_KEY=sk-your-key-here
+   # MODEL_NAME=gpt-3.5-turbo
    ```
 
 **Option B: Using Streamlit Secrets (For deployment)**
 
 1. Create `.streamlit/secrets.toml`:
    ```toml
-   OPENAI_API_KEY = "sk-your-key-here"
-   MODEL_NAME = "gpt-3.5-turbo"
-   LLM_PROVIDER = "openai"
+   GROQ_API_KEY = "your-groq-key-here"
+   MODEL_NAME = "llama-3.1-8b-instant"
+   LLM_PROVIDER = "groq"
    ```
 
 ### 3. Run the Application
@@ -87,6 +93,7 @@ This will verify:
 4. Create a new API key
 5. Free tier: 14,400 requests/day
 6. Use model: `llama3-70b-8192`
+   - Recommended current option: `llama-3.1-8b-instant`
 
 ## Troubleshooting
 
@@ -111,7 +118,7 @@ This will verify:
 
 1. ✅ Test the chatbot locally
 2. 📖 Read the full [README.md](README.md) for detailed documentation
-3. 🚀 Deploy to [Streamlit Cloud](https://share.streamlit.io) or [Hugging Face Spaces](https://huggingface.co/spaces)
+3. 🚀 Visit the live demo on Streamlit Cloud: https://talentscout-chat.streamlit.app/
 4. 🎨 Customize prompts and styling to match your brand
 
 ## Need Help?
