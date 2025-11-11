@@ -8,19 +8,19 @@ A sophisticated AI-powered hiring assistant chatbot built with Streamlit and Lar
 
 ## 📋 Table of Contents
 
-- [Project Overview](#project-overview)
-- [Live Demo](#live-demo)
-- [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
-- [Installation & Setup](#installation--setup)
-- [Configuration](#configuration)
-- [Usage Guide](#usage-guide)
-- [Project Structure](#project-structure)
-- [Prompt Engineering Approach](#prompt-engineering-approach)
-- [Deployment](#deployment)
-- [Challenges & Solutions](#challenges--solutions)
-- [Future Improvements](#future-improvements)
-- [License](#license)
+- [Project Overview](#-project-overview)
+- [Live Demo](#-live-demo)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Installation & Setup](#-installation--setup)
+- [Configuration](#-configuration)
+- [Usage Guide](#-usage-guide)
+- [Project Structure](#-project-structure)
+- [Prompt Engineering Approach](#-prompt-engineering-approach)
+- [Deployment](#-deployment)
+- [Challenges & Solutions](#-challenges--solutions)
+- [Future Improvements](#-future-improvements)
+- [License](#-license)
 
 ## 🎯 Project Overview
 
