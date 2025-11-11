@@ -9,6 +9,7 @@ A sophisticated AI-powered hiring assistant chatbot built with Streamlit and Lar
 ## 📋 Table of Contents
 
 - [Project Overview](#project-overview)
+- [Live Demo](#live-demo)
 - [Key Features](#key-features)
 - [Tech Stack](#tech-stack)
 - [Installation & Setup](#installation--setup)
@@ -19,7 +20,6 @@ A sophisticated AI-powered hiring assistant chatbot built with Streamlit and Lar
 - [Deployment](#deployment)
 - [Challenges & Solutions](#challenges--solutions)
 - [Future Improvements](#future-improvements)
-- [Live Demo](#live-demo)
 - [License](#license)
 
 ## 🎯 Project Overview
@@ -40,6 +40,11 @@ The TalentScout Hiring Assistant is an intelligent chatbot designed to automate 
 3. **Generates technical questions** (3-5 questions) based on the candidate's technologies
 4. **Maintains conversation context** throughout the interaction
 5. **Handles edge cases** gracefully (invalid inputs, exit requests, off-topic messages)
+
+## 🌐 Live Demo
+
+### Streamlit Cloud
+🔗 [TalentScout Hiring Assistant on Streamlit Cloud](https://talentscout-chat.streamlit.app/)
 
 ## ✨ Key Features
 
@@ -458,11 +463,6 @@ RESPONSE FORMAT:
    - Difficulty level selection
    - Question categories (conceptual, practical, coding)
    - Adaptive questioning based on answers
-
-## 🌐 Live Demo
-
-### Streamlit Cloud
-🔗 [TalentScout Hiring Assistant on Streamlit Cloud](https://talentscout-chat.streamlit.app/)
 
 ## 📝 License
 
