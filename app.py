@@ -150,15 +150,18 @@ def handle_user_message(user_input: str):
         cm.add_message("user", user_input)
         cm.add_message("assistant", exit_message)
         cm.stage = ConversationStage.ENDED
+        # Safely get timestamps - ensure we have at least 2 messages
+        user_ts = cm.conversation_history[-2]["timestamp"] if len(cm.conversation_history) >= 2 else cm.conversation_history[-1]["timestamp"]
+        assistant_ts = cm.conversation_history[-1]["timestamp"]
         st.session_state.messages.append({
             "role": "user",
             "content": user_input,
-            "timestamp": cm.conversation_history[-2]["timestamp"]
+            "timestamp": user_ts
         })
         st.session_state.messages.append({
             "role": "assistant",
             "content": exit_message,
-            "timestamp": cm.conversation_history[-1]["timestamp"]
+            "timestamp": assistant_ts
         })
         return
     
@@ -183,30 +186,36 @@ def handle_user_message(user_input: str):
                 )
                 st.session_state.current_question = question
                 cm.add_message("assistant", question)
+                # Safely get timestamps
+                user_ts = cm.conversation_history[-2]["timestamp"] if len(cm.conversation_history) >= 2 else cm.conversation_history[-1]["timestamp"]
+                assistant_ts = cm.conversation_history[-1]["timestamp"]
                 st.session_state.messages.append({
                     "role": "user",
                     "content": user_input,
-                    "timestamp": cm.conversation_history[-2]["timestamp"]
+                    "timestamp": user_ts
                 })
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": question,
-                    "timestamp": cm.conversation_history[-1]["timestamp"]
+                    "timestamp": assistant_ts
                 })
             else:
                 # All questions answered, move to conclusion
                 cm.move_to_next_stage()
                 conclusion = llm.generate_conclusion(cm.candidate_info)
                 cm.add_message("assistant", conclusion)
+                # Safely get timestamps
+                user_ts = cm.conversation_history[-2]["timestamp"] if len(cm.conversation_history) >= 2 else cm.conversation_history[-1]["timestamp"]
+                assistant_ts = cm.conversation_history[-1]["timestamp"]
                 st.session_state.messages.append({
                     "role": "user",
                     "content": user_input,
-                    "timestamp": cm.conversation_history[-2]["timestamp"]
+                    "timestamp": user_ts
                 })
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": conclusion,
-                    "timestamp": cm.conversation_history[-1]["timestamp"]
+                    "timestamp": assistant_ts
                 })
                 st.session_state.current_question = None
         return
@@ -219,15 +228,18 @@ def handle_user_message(user_input: str):
         cm.add_message("user", user_input)
         error_response = f"I'm sorry, but that doesn't seem right. {error_msg} Please try again."
         cm.add_message("assistant", error_response)
+        # Safely get timestamps
+        user_ts = cm.conversation_history[-2]["timestamp"] if len(cm.conversation_history) >= 2 else cm.conversation_history[-1]["timestamp"]
+        assistant_ts = cm.conversation_history[-1]["timestamp"]
         st.session_state.messages.append({
             "role": "user",
             "content": user_input,
-            "timestamp": cm.conversation_history[-2]["timestamp"]
+            "timestamp": user_ts
         })
         st.session_state.messages.append({
             "role": "assistant",
             "content": error_response,
-            "timestamp": cm.conversation_history[-1]["timestamp"]
+            "timestamp": assistant_ts
         })
         return
     
@@ -254,29 +266,35 @@ def handle_user_message(user_input: str):
         )
         st.session_state.current_question = question
         cm.add_message("assistant", question)
+        # Safely get timestamps
+        user_ts = cm.conversation_history[-2]["timestamp"] if len(cm.conversation_history) >= 2 else cm.conversation_history[-1]["timestamp"]
+        assistant_ts = cm.conversation_history[-1]["timestamp"]
         st.session_state.messages.append({
             "role": "user",
             "content": user_input,
-            "timestamp": cm.conversation_history[-2]["timestamp"]
+            "timestamp": user_ts
         })
         st.session_state.messages.append({
             "role": "assistant",
             "content": question,
-            "timestamp": cm.conversation_history[-1]["timestamp"]
+            "timestamp": assistant_ts
         })
     elif cm.stage == ConversationStage.CONCLUSION:
         # Generate conclusion
         conclusion = llm.generate_conclusion(cm.candidate_info)
         cm.add_message("assistant", conclusion)
+        # Safely get timestamps
+        user_ts = cm.conversation_history[-2]["timestamp"] if len(cm.conversation_history) >= 2 else cm.conversation_history[-1]["timestamp"]
+        assistant_ts = cm.conversation_history[-1]["timestamp"]
         st.session_state.messages.append({
             "role": "user",
             "content": user_input,
-            "timestamp": cm.conversation_history[-2]["timestamp"]
+            "timestamp": user_ts
         })
         st.session_state.messages.append({
             "role": "assistant",
             "content": conclusion,
-            "timestamp": cm.conversation_history[-1]["timestamp"]
+            "timestamp": assistant_ts
         })
     else:
         # Generate response for next information collection stage
@@ -287,15 +305,18 @@ def handle_user_message(user_input: str):
             collected_info=stage_context["collected_info"]
         )
         cm.add_message("assistant", response)
+        # Safely get timestamps
+        user_ts = cm.conversation_history[-2]["timestamp"] if len(cm.conversation_history) >= 2 else cm.conversation_history[-1]["timestamp"]
+        assistant_ts = cm.conversation_history[-1]["timestamp"]
         st.session_state.messages.append({
             "role": "user",
             "content": user_input,
-            "timestamp": cm.conversation_history[-2]["timestamp"]
+            "timestamp": user_ts
         })
         st.session_state.messages.append({
             "role": "assistant",
             "content": response,
-            "timestamp": cm.conversation_history[-1]["timestamp"]
+            "timestamp": assistant_ts
         })
 
 
